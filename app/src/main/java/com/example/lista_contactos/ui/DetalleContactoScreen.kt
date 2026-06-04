@@ -1,13 +1,19 @@
 package com.example.lista_contactos.ui
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,6 +24,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,6 +35,22 @@ fun DetalleContactoScreen(
     onBackClick: () -> Unit
 ) {
     val context = LocalContext.current
+
+    // Paso 5: Launcher para solicitar el permiso CALL_PHONE
+    val requestPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            // Si el permiso es concedido, lanzamos la llamada
+            val intent = Intent(Intent.ACTION_CALL).apply {
+                data = Uri.parse("tel:$telefono")
+            }
+            context.startActivity(intent)
+        } else {
+            // Si es denegado, informamos al usuario
+            Toast.makeText(context, "El permiso es necesario para llamar directamente", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -96,7 +119,32 @@ fun DetalleContactoScreen(
                 Text("Abrir marcador")
             }
             
-            // Aquí se incluirá el botón de acción del paso 5 posteriormente
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Paso 5: Botón "Llamar directo" — Intent implícito ACTION_CALL + permiso
+            Button(
+                onClick = {
+                    when (PackageManager.PERMISSION_GRANTED) {
+                        ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) -> {
+                            // Si ya tenemos el permiso, lanzamos la llamada
+                            val intent = Intent(Intent.ACTION_CALL).apply {
+                                data = Uri.parse("tel:$telefono")
+                            }
+                            context.startActivity(intent)
+                        }
+                        else -> {
+                            // Si no lo tenemos, lo solicitamos
+                            requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE)
+                        }
+                    }
+                },
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
+            ) {
+                Icon(imageVector = Icons.Default.Phone, contentDescription = null)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("Llamar directo")
+            }
         }
     }
 }
