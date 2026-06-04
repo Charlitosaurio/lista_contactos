@@ -11,6 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.lista_contactos.models.getContactosDeMuestra
+import com.example.lista_contactos.ui.ListaContactosScreen
 import com.example.lista_contactos.ui.theme.Lista_contactosTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,10 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Lista_contactosTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    ListaContactosScreen(getContactosDeMuestra(), {})
                 }
             }
         }

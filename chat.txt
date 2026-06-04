@@ -1,3 +1,15 @@
 [2024-05-22 10:00:00]
 Description: Aceptación y aplicación de las directrices del proyecto.
 Prompt: chat toma en cuenta y aplica las instrucciones del archivo guidelines
+
+[2024-05-23 09:00:00]
+Description: Creación del modelo Contacto y lista de muestra.
+Prompt: chat ayudame a generar un modelo con estas instrucciones: Crea una data class Contacto(nombre: String, telefono: String, fotoRes: Int). Define una lista con al menos 8 contactos de muestra.
+
+[2024-05-23 13:40:00]
+Description: Implementación de ListaContactosScreen con LazyColumn y manejo de clics.
+Prompt: GENERAME estas otras dos acciones: Construye la pantalla ListaContactosScreen usando LazyColumn: cada ítem muestra foto o avatar con iniciales, nombre y número. Cada ítem debe recibir una lambda onClick que se invocará al tocarlo.
+
+[2024-05-23 14:00:00]
+Description: Refinamiento del modelo Contacto y la pantalla ListaContactosScreen con soporte para avatares e iniciales.
+Prompt: GENERAME estas otras dos acciones: Construye la pantalla ListaContactosScreen usando LazyColumn: cada ítem muestra foto o avatar con iniciales, nombre y número. Cada ítem debe recibir una lambda onClick que se invocará al tocarlo.
