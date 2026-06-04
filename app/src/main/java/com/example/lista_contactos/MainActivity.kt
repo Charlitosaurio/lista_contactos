@@ -7,12 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.lista_contactos.models.getContactosDeMuestra
-import com.example.lista_contactos.ui.ListaContactosScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.lista_contactos.navigation.AppNavigation
 import com.example.lista_contactos.ui.theme.Lista_contactosTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,26 +19,17 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Lista_contactosTheme {
+                // NavController en el raíz
+                val navController = rememberNavController()
+                
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ListaContactosScreen(getContactosDeMuestra(), {})
+                    // Llamada al NavHost que está en una carpeta/archivo separado
+                    AppNavigation(
+                        navController = navController,
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Lista_contactosTheme {
-        Greeting("Apple")
     }
 }
