@@ -37,10 +37,17 @@ fun AppNavigation(
                 navArgument("fotoRes") { type = NavType.IntType }
             )
         ) { backStackEntry ->
+            // Obtención de argumentos desde el NavBackStackEntry
             val nombre = backStackEntry.arguments?.getString("nombre") ?: ""
             val telefono = backStackEntry.arguments?.getString("telefono") ?: ""
             val fotoRes = backStackEntry.arguments?.getInt("fotoRes") ?: 0
-            DetalleContactoScreen(nombre, telefono, fotoRes)
+            
+            DetalleContactoScreen(
+                nombre = nombre,
+                telefono = telefono,
+                fotoRes = fotoRes,
+                onBackClick = { navController.popBackStack() }
+            )
         }
     }
 }
