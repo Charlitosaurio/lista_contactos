@@ -12,14 +12,14 @@ data class Contacto(
 // IA generated: List of sample contacts to populate the UI
 fun getContactosDeMuestra(): List<Contacto> {
     return listOf(
-        Contacto("Juan Perez", "555-0101", android.R.drawable.ic_menu_myplaces),
-        Contacto("Maria Garcia", "555-0102", android.R.drawable.ic_menu_myplaces),
-        Contacto("Luis Rodriguez", "555-0103", android.R.drawable.ic_menu_myplaces),
-        Contacto("Ana Martinez", "555-0104", android.R.drawable.ic_menu_myplaces),
-        Contacto("Carlos Lopez", "555-0105", android.R.drawable.ic_menu_myplaces),
-        Contacto("Elena Gomez", "555-0106", android.R.drawable.ic_menu_myplaces),
-        Contacto("Pedro Sanchez", "555-0107", android.R.drawable.ic_menu_myplaces),
-        Contacto("Lucia Fernandez", "555-0108", android.R.drawable.ic_menu_myplaces),
+        Contacto("Eladio", "555-0101", R.drawable.eladio),
+        Contacto("Raphina", "555-0102", R.drawable.raphina),
+        Contacto("Dembele", "555-0103", R.drawable.dembele),
+        Contacto("Cristiano", "555-0104", R.drawable.cristiano),
+        Contacto("Alison", "555-0105", R.drawable.alison),
+        Contacto("Jamal", "555-0106", R.drawable.yamal),
+        Contacto("Neymar", "555-0107", R.drawable.neymar),
+        Contacto("Victor", "555-0108", R.drawable.victor),
         // IA generated: Local contact using the provided image resource
         Contacto("Angel Malagon", "4774487035", R.drawable.angel_malagon)
     )
